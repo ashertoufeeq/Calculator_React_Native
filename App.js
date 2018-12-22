@@ -1,22 +1,66 @@
-import React from 'react';
+import React, {component} from 'react';
 import { StyleSheet, Text, View ,TouchableOpacity,} from 'react-native';
 
 export default class App extends React.Component {
 constructor(props){
   super(props)
+this.state={
+ textInputs:"",
+ operatorsSym:["/","*","-","+"],
+}
+}
+calculatePer(){
+  const text = this.state.textInputs;
+}
+
+onPress=(text)=>{
+ {  if(text === "AC"){
+  this.setState({textInputs:""
+  })
+ 
+   }
+   else if (text === "C"){let text = this.state.textInputs.split('');
+   text.pop()
+     this.setState({
+      textInputs:text.join('')})
+    }
+   else if(text ==="%"){
+    return calculatePer(this.state.textInputs)
+   } 
+  else 
+  
+ this.setState({
+    
+textInputs:this.state.textInputs+text})
+
+
+}}
+operation(operatorsSym){
+switch(operatorsSym){
+  case '/':
+  case '*':
+  case '-':
+  case '+':
+  const lastChar = this.state.textInputs.split('').pop();
+  if(this.state.operatorsSym.indexOf(lastChar)>0){return}
+  if(this.state.textInputs==""){return}
+else {  this.setState({
+  textInputs:this.state.textInputs + operatorsSym})
+}}}
+
+equal(){
 
 }
 
-
   render() {
-    let buttons=[["AC","Back","%"],["7","8","9"],["4","5","6"],["1","2","3"],["","0","."]];
+    let buttons=[["AC","C","%"],["7","8","9"],["4","5","6"],["1","2","3"],["","0","."]];
     let rows=[];
         for(let i=0;i<5;i++)
     {   let row=[];
         for(let j=0;j<3;j++){
       
       row.push(
-        <TouchableOpacity  style={styles.button}>
+        <TouchableOpacity  style={styles.button} onPress={this.onPress.bind(this,buttons[i][j])}>
             <Text style={styles.buttonText}>
     {buttons[i][j]}
             </Text>
@@ -33,12 +77,12 @@ constructor(props){
   
     } 
 
-    let operatorsSym=["/","*","-","+"];
+    
     let operatorKeys=[];
     for(let i = 0 ; i<4;i++){
 operatorKeys.push(
-  <TouchableOpacity style={styles.button }>
-  <Text>{operatorsSym[i]}</Text>
+  <TouchableOpacity style={styles.button } onPress = {this.operation.bind(this,this.state.operatorsSym[i])}>
+  <Text style={styles.buttonText}>{this.state.operatorsSym[i]}</Text>
   </TouchableOpacity>
 )
     }
@@ -47,14 +91,14 @@ operatorKeys.push(
       <View style={styles.container}>
         <View style={styles.inputs} ></View>
         <View style={styles.results}>
-        <Text style={styles.inputText}>0</Text></View>
+        <Text style={styles.inputText}>{this.state.textInputs}</Text></View>
         <View style={styles.operations}>
-        <View style={styles.viewColumn}>
+      <View style={styles.viewColumn}>
         {rows}
-        </View>    
-            <View style={styles.operators}>
+      </View>    
+        <View style={styles.operators}>
             {operatorKeys}
-              <Text style={styles.buttonEqual}>=</Text>
+            <Text style={styles.buttonEqual}>=</Text>
               
             </View>
         </View>
@@ -98,8 +142,8 @@ operators:{
 flex :1,
 backgroundColor:"#fff"
 },
-button:{padding:20,
-  
+button:{
+  padding:20,
   flex:3,
   borderWidth:.3,
   borderColor:"#444",
@@ -119,41 +163,14 @@ buttonEqual:{
   borderColor:"#444",
   color:"#444",
   fontSize:25,
-   alignItems:"center",
-   justifyContent:"space-between"
+   textAlign:"center"
 },
 buttonText:{
   color:"#444",
   fontSize:25,
-   alignItems:"center",
-   justifyContent:"space-between"
+
+  
   
 }
 
 });
-        /*   
-<View style={styles.numbers}>
-<Text style={styles.buttonAC}>AC</Text>
-<Text style={styles.button}>Back</Text>
-<Text style={styles.button}>%</Text>
-</View>
-<View >
-<Text style={styles.button}>7</Text>
-<Text style={styles.button}>8</Text>
-<Text style={styles.button}>9</Text>
-</View>
-<View style={styles.numbers}>
-<Text style={styles.button}>4</Text>
-<Text style={styles.button}>5</Text>
-<Text style={styles.button}>6</Text>
-</View>
-<View style={styles.numbers}>
-<Text>1</Text>
-<Text style={styles.button}>2</Text>
-<Text style={styles.button}>3</Text>
-</View>
-<View style={styles.numbers}>
-<Text style={styles.button}></Text>
-<Text style={styles.button}>0</Text>
-<Text style={styles.button}>.</Text>
-</View>*/
