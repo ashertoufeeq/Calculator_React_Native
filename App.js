@@ -17,35 +17,43 @@ constructor(props){
       
       row.push(
         <TouchableOpacity  style={styles.button}>
-            <Text>
-    buttons[i][j];
+            <Text style={styles.buttonText}>
+    {buttons[i][j]}
             </Text>
         
         </TouchableOpacity>
       );
     }
      rows.push(
-       <View>
-          row;
+       <View style={styles.numbers}>
+          {row}
        </View>
       
      )
-    
+  
     } 
- 
-    return (
+
+    let operatorsSym=["/","*","-","+"];
+    let operatorKeys=[];
+    for(let i = 0 ; i<4;i++){
+operatorKeys.push(
+  <TouchableOpacity style={styles.button }>
+  <Text>{operatorsSym[i]}</Text>
+  </TouchableOpacity>
+)
+    }
+    
+     return (
       <View style={styles.container}>
         <View style={styles.inputs} ></View>
         <View style={styles.results}>
         <Text style={styles.inputText}>0</Text></View>
         <View style={styles.operations}>
         <View style={styles.viewColumn}>
+        {rows}
         </View>    
             <View style={styles.operators}>
-            <Text style={styles.button}>/</Text>
-              <Text style={styles.button}>*</Text>
-              <Text style={styles.button}>-</Text>
-              <Text style={styles.button}>+</Text>
+            {operatorKeys}
               <Text style={styles.buttonEqual}>=</Text>
               
             </View>
@@ -114,13 +122,8 @@ buttonEqual:{
    alignItems:"center",
    justifyContent:"space-between"
 },
-buttonAC:{
-  padding:20,
-  flex:3,
-  borderWidth:.3,
-  backgroundColor:"#fff",
-  borderColor:"#444",
-  color:"#ff6c16",
+buttonText:{
+  color:"#444",
   fontSize:25,
    alignItems:"center",
    justifyContent:"space-between"
@@ -134,7 +137,7 @@ buttonAC:{
 <Text style={styles.button}>Back</Text>
 <Text style={styles.button}>%</Text>
 </View>
-<View style={styles.numbers}>
+<View >
 <Text style={styles.button}>7</Text>
 <Text style={styles.button}>8</Text>
 <Text style={styles.button}>9</Text>
