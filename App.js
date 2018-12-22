@@ -1,8 +1,38 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View ,TouchableOpacity,} from 'react-native';
 
 export default class App extends React.Component {
+constructor(props){
+  super(props)
+
+}
+
+
   render() {
+    let buttons=[["AC","Back","%"],["7","8","9"],["4","5","6"],["1","2","3"],["","0","."]];
+    let rows=[];
+        for(let i=0;i<5;i++)
+    {   let row=[];
+        for(let j=0;j<3;j++){
+      
+      row.push(
+        <TouchableOpacity  style={styles.button}>
+            <Text>
+    buttons[i][j];
+            </Text>
+        
+        </TouchableOpacity>
+      );
+    }
+     rows.push(
+       <View>
+          row;
+       </View>
+      
+     )
+    
+    } 
+ 
     return (
       <View style={styles.container}>
         <View style={styles.inputs} ></View>
@@ -10,33 +40,6 @@ export default class App extends React.Component {
         <Text style={styles.inputText}>0</Text></View>
         <View style={styles.operations}>
         <View style={styles.viewColumn}>
-                        
-              <View style={styles.numbers}>
-              <Text style={styles.buttonAC}>AC</Text>
-              <Text style={styles.button}>Back</Text>
-              <Text style={styles.button}>%</Text>
-              </View>
-              <View style={styles.numbers}>
-              <Text style={styles.button}>7</Text>
-              <Text style={styles.button}>8</Text>
-              <Text style={styles.button}>9</Text>
-              </View>
-              <View style={styles.numbers}>
-              <Text style={styles.button}>4</Text>
-              <Text style={styles.button}>5</Text>
-              <Text style={styles.button}>6</Text>
-              </View>
-              <View style={styles.numbers}>
-              <Text style={styles.button}>1</Text>
-              <Text style={styles.button}>2</Text>
-              <Text style={styles.button}>3</Text>
-              </View>
-              <View style={styles.numbers}>
-              <Text style={styles.button}></Text>
-              <Text style={styles.button}>0</Text>
-              <Text style={styles.button}>.</Text>
-              </View>
-             
         </View>    
             <View style={styles.operators}>
             <Text style={styles.button}>/</Text>
@@ -125,3 +128,29 @@ buttonAC:{
 }
 
 });
+        /*   
+<View style={styles.numbers}>
+<Text style={styles.buttonAC}>AC</Text>
+<Text style={styles.button}>Back</Text>
+<Text style={styles.button}>%</Text>
+</View>
+<View style={styles.numbers}>
+<Text style={styles.button}>7</Text>
+<Text style={styles.button}>8</Text>
+<Text style={styles.button}>9</Text>
+</View>
+<View style={styles.numbers}>
+<Text style={styles.button}>4</Text>
+<Text style={styles.button}>5</Text>
+<Text style={styles.button}>6</Text>
+</View>
+<View style={styles.numbers}>
+<Text>1</Text>
+<Text style={styles.button}>2</Text>
+<Text style={styles.button}>3</Text>
+</View>
+<View style={styles.numbers}>
+<Text style={styles.button}></Text>
+<Text style={styles.button}>0</Text>
+<Text style={styles.button}>.</Text>
+</View>*/
